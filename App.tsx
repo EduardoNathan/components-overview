@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import { Alert, StyleSheet, Text, View, Image, TextInput, TouchableOpacity,
+          ScrollView, Switch} from 'react-native';
 import imageUser from "./assets/user-placeholder.jpg"
 import { useState } from 'react';
 
 export default function App() {
   const [usuario, setUsuario] = useState('')
+  const [ligado, setLigado] = useState(false)
 
+  function handleSwitch(){
+    setLigado(!ligado)
+    Alert.alert("SWITCH ALTERADO", "VOCE ALTEROU O ESTADO DO SWITCH")
+  }
 
   return (
     <ScrollView>
@@ -16,9 +22,9 @@ export default function App() {
       //onTouchEnd={(event)=>{Alert.alert("TOQUE", "Toque finalizado")}}
       >
 
-      <View style={styles.userPhoto}>
+      <View>
         <Image
-        style={styles.userPhoto}
+          style={styles.userPhoto}
           source={imageUser}
         />
       </View>
@@ -39,7 +45,12 @@ export default function App() {
       </View>
       </TouchableOpacity>
       
-      
+      <Switch
+
+       value={ligado}
+       onValueChange={handleSwitch}>
+
+      </Switch>
 
       <StatusBar style="auto" />
     </View>
