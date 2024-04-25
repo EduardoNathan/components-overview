@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 import imageUser from "./assets/user-placeholder.jpg"
+import { useState } from 'react';
 
 export default function App() {
-  
+  const [usuario, setUsuario] = useState('')
+
+
   return (
     
     <View 
@@ -20,16 +23,21 @@ export default function App() {
       </View>
 
       <TextInput style={styles.inputStyle}
+        onChange={(text)=>setUsuario(text.nativeEvent.text)}
         keyboardType='email-address'
-        placeholder='digite seu e-mail'/>
+        placeholder='digite seu e-mail'
+        value={usuario}/>
 
       <TextInput style={styles.inputStyle}
         keyboardType='default'
         placeholder='digite sua senha'/>
       
+      <TouchableOpacity onPress={()=>{Alert.alert('Usuario é:', usuario)}}>
       <View style={styles.button}>
         <Text style={styles.text}>LOGIN</Text>
       </View>
+      </TouchableOpacity>
+      
       
 
       <StatusBar style="auto" />
